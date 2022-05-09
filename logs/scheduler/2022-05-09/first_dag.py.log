@@ -161,6 +161,7 @@
 [2022-05-09 03:15:24,595] {logging_mixin.py:115} INFO - [2022-05-09 03:15:24,594] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/first_dag.py
 [2022-05-09 03:15:24,603] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/first_dag.py
 [2022-05-09 03:15:24,632] {processor.py:161} INFO - Processing /opt/airflow/dags/first_dag.py took 0.051 seconds
+<<<<<<< HEAD
 [2022-05-09 03:15:54,685] {processor.py:153} INFO - Started process (PID=251) to work on /opt/airflow/dags/first_dag.py
 [2022-05-09 03:15:54,687] {processor.py:641} INFO - Processing file /opt/airflow/dags/first_dag.py for tasks to queue
 [2022-05-09 03:15:54,688] {logging_mixin.py:115} INFO - [2022-05-09 03:15:54,688] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/first_dag.py
@@ -186,3 +187,5 @@
 [2022-05-09 03:17:55,254] {logging_mixin.py:115} INFO - [2022-05-09 03:17:55,254] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/first_dag.py
 [2022-05-09 03:17:55,258] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/first_dag.py
 [2022-05-09 03:17:55,277] {processor.py:161} INFO - Processing /opt/airflow/dags/first_dag.py took 0.031 seconds
+=======
+>>>>>>> 3bd93c292cd7d02cd0bb61fe1ff8f1f6e22755cd
