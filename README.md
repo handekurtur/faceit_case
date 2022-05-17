@@ -1,4 +1,4 @@
-# FACEIT DATA ENGINEERING CASE
+## FACEIT Challenge
 
 In this project, we'll implement the concepts in data modeling with Postgres and build an ETL pipeline using Python on Apache Airflow. 
 We will define fact and dimension tables for a star schema for a user behavior, and write an ETL pipeline that transfers data from files in two local directories into these tables in Postgres using Python and SQL.
@@ -33,7 +33,7 @@ We will define fact and dimension tables for a star schema for a user behavior, 
   docker-compose down -v
 ```
 
-8 - Test that Airflow is running by visiting 0.0.0.0:8080 on local machine (if it isn't running, make sure docker containers are ok with: docker ps command)
+8 - Test that Airflow is running by visiting localhost:8080 on local machine (if it isn't running, make sure docker containers are ok with: docker ps command)
 
-9 - Test that PgAdmin is running by visiting 0.0.0.0:5050 on local machine
+9 - Test that PgAdmin is running by visiting localhost:5050 on local machine
 
