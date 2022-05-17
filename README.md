@@ -13,6 +13,10 @@ We will define fact and dimension tables for a star schema for a user behavior, 
 
 3 - Make sure pip is fully upgraded on local machine
 
+```bash
+  pip install --upgrade pip==20.2.4 --user
+```
+
 4 - Run pip install apache-airflow
 
 ```bash
@@ -37,3 +41,12 @@ We will define fact and dimension tables for a star schema for a user behavior, 
 
 9 - Test that PgAdmin is running by visiting localhost:5050 on local machine
 
+
+## Used technologies and versions
+
+Python                  3.9.7 \
+Apache Airflow          2.3.0 \
+Postgres                13.6 \
+PgAdmin4 \
+Docker Desktop          4.8.0 - version 20.10.14 \
+Docker Compose version  v2.5.0
