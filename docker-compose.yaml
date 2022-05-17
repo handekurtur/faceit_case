@@ -53,6 +53,7 @@ x-airflow-common:
     # For backward compatibility, with Airflow <2.3
     AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__WEBSERVER__SECRET_KEY: 'A+lHKIeX4RpkBMqtXHxn7Q=='
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
@@ -74,14 +75,25 @@ services:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
     volumes:
-      - postgres-db-volume:/var/lib/postgresql/data
+      - postgres-db-volume-v1:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 5s
       retries: 5
     restart: always
 
+  pgadmin4:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: faceit@company.com
+      PGADMIN_DEFAULT_PASSWORD: faceit
+  
   airflow-webserver:
     <<: *airflow-common
     command: webserver
@@ -97,6 +109,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+    volumes:
+        - ./data:/opt/airflow/data
 
   airflow-scheduler:
     <<: *airflow-common
@@ -208,4 +222,8 @@ services:
       - airflow
 
 volumes:
-  postgres-db-volume:
+  postgres-db-volume-v1:
+    driver: local
+  airflow-volume:
+    driver: local  
+
