@@ -31,8 +31,8 @@ def process_json_files(cur, conn):
         cur.execute(player_table_insert, row)
     conn.commit()
 
-    # #MATCH
-    matchDF = mergedData[["match_id","match_type", "current_round", "url", "game_y", "state"]].drop_duplicates(subset='match_id', keep='last')
+    #MATCH
+    matchDF = mergedData[["match_id","match_type", "url", "game_y", "state"]].drop_duplicates(subset='match_id', keep='last')
 
     for i, row in matchDF.iterrows():
         cur.execute(match_table_insert, row)
@@ -45,7 +45,7 @@ def process_json_files(cur, conn):
         cur.execute(organizer_table_insert, row)
     conn.commit()
 
-    # PAGES
+    #PAGES
     pagesDF = mergedData[[ "page.url", "page.title", "page.category", "tracking_session_id"]].drop_duplicates(subset='page.url', keep='last')
 
     for i, row in pagesDF.iterrows():
@@ -62,20 +62,22 @@ def process_json_files(cur, conn):
     conn.commit()
 
     #FACT-PLAYERMATCH
-    fact = mergedData[["user_id","match_id","entity.id","page.url","event_timestamp_x"]].drop_duplicates(subset=['user_id','match_id'], keep='last')
+    fact = mergedData[["user_id","match_id","entity.id","page.url","event_timestamp_x","current_round"]].drop_duplicates(subset=['user_id','match_id'], keep='last')
     for i, row in fact.iterrows():
         if i in fact:
-            cur.execute(playermatch_table_insert, fact)
+            cur.execute(playermatch_table_insert, row)
+        
     conn.commit()
-
+    
     conn.close()
-   
+
 def main_etl():
 
     conn = psycopg2.connect("host=host.docker.internal dbname=faceit user=airflow password=airflow")
     conn.set_session(autocommit=True)
     cur = conn.cursor()
     process_json_files(cur,conn)
+
 
 if __name__ == "__main__":
     main_etl()
