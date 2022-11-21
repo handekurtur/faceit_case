@@ -1,4 +1,4 @@
-## FACEIT Challenge
+## Create Star Schema to PostgreSQL with Python-Airflow
 
 In this project, we'll implement the concepts in data modeling with Postgres and build an ETL pipeline using Python on Apache Airflow. 
 We will define fact and dimension tables for a star schema for a user behavior, and write an ETL pipeline that transfers data from files in two local directories into these tables in Postgres using Python and SQL.
